@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STCMS Test Suites - Group and manage test suites">
+    <title>Test Suites - STCMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><i class="fas fa-vial"></i><h5>STCMS <span>Test Management</span></h5></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Main</div><a href="dashboard.html" class="nav-link-sidebar"><i class="fas fa-th-large"></i> Dashboard</a><a href="projects.html" class="nav-link-sidebar"><i class="fas fa-folder-open"></i> Projects</a></div>
+                <div class="nav-section"><div class="nav-section-title">Testing</div><a href="test-cases.html" class="nav-link-sidebar"><i class="fas fa-list-check"></i> Test Cases</a><a href="test-execution.html" class="nav-link-sidebar"><i class="fas fa-play-circle"></i> Test Execution</a><a href="test-suites.html" class="nav-link-sidebar active"><i class="fas fa-layer-group"></i> Test Suites</a><a href="bugs.html" class="nav-link-sidebar"><i class="fas fa-bug"></i> Bug Tracking</a></div>
+                <div class="nav-section"><div class="nav-section-title">Analytics</div><a href="reports.html" class="nav-link-sidebar"><i class="fas fa-chart-bar"></i> Reports</a><a href="rtm.html" class="nav-link-sidebar"><i class="fas fa-project-diagram"></i> RTM</a></div>
+                <div class="nav-section"><div class="nav-section-title">Admin</div><a href="team.html" class="nav-link-sidebar"><i class="fas fa-users"></i> Team</a><a href="settings.html" class="nav-link-sidebar"><i class="fas fa-cog"></i> Settings</a><a href="help.html" class="nav-link-sidebar"><i class="fas fa-question-circle"></i> Help</a></div>
+            </nav>
+            <div class="sidebar-footer"><a href="#" class="nav-link-sidebar" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+        </div>
+        <div class="overlay" id="sidebarOverlay"></div>
+
+        <div class="main-content">
+            <header class="top-header">
+                <div class="header-left"><button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button><h1 class="page-title">Test Suites</h1></div>
+                <div class="header-right">
+                    <button class="header-btn theme-toggle" onclick="toggleTheme()" title="Toggle Theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+                    <div style="position:relative;"><button class="header-btn" id="notificationBtn" onclick="toggleNotifications()"><i class="fas fa-bell"></i><span class="notification-count" id="notificationCount" style="display:none;">0</span></button><div class="notification-dropdown" id="notificationDropdown"><div class="notification-header"><h6>Notifications</h6><button class="btn btn-sm btn-link" onclick="markAllNotificationsRead()">Mark all read</button></div><div class="notification-list" id="notificationList"></div></div></div>
+                    <div class="user-dropdown"><div class="user-avatar" id="headerUserAvatar">AU</div><div class="user-info"><span class="user-name" id="headerUserName">Admin</span><span class="user-role" id="headerUserRole">Admin</span></div></div>
+                </div>
+            </header>
+
+            <div class="page-content">
+                <div class="page-header">
+                    <div><h2>Test Suites</h2><p>Organize test cases into suites for batch execution</p></div>
+                    <button class="btn btn-primary" onclick="openSuiteModal()"><i class="fas fa-plus"></i> New Suite</button>
+                </div>
+
+                <div class="row g-4" id="suiteCards"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Suite Modal -->
+    <div class="modal fade" id="suiteModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="suiteModalTitle">New Test Suite</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+            <form id="suiteForm">
+                <input type="hidden" id="suiteId">
+                <div class="row g-3">
+                    <div class="col-md-8"><label for="suiteName" class="form-label">Suite Name *</label><input type="text" class="form-control" id="suiteName" required minlength="3"><div class="invalid-feedback"></div></div>
+                    <div class="col-md-4"><label for="suiteProject" class="form-label">Project *</label><select class="form-select" id="suiteProject" required><option value="">Select Project</option></select><div class="invalid-feedback"></div></div>
+                    <div class="col-12"><label for="suiteDesc" class="form-label">Description</label><textarea class="form-control" id="suiteDesc" rows="2"></textarea></div>
+                    <div class="col-12">
+                        <label class="form-label">Test Cases</label>
+                        <div id="suiteTestCasesList" style="max-height:250px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--border-radius);padding:12px;"></div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onclick="saveSuite()"><i class="fas fa-save"></i> Save Suite</button></div>
+    </div></div></div>
+
+    <!-- View Suite Modal -->
+    <div class="modal fade" id="viewSuiteModal" tabindex="-1"><div class="modal-dialog modal-lg"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title">Suite Details</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body" id="viewSuiteBody"></div>
+    </div></div></div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/suites.js"></script>
+</body>
+</html>

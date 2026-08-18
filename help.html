@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STCMS Help - User guide and FAQ">
+    <title>Help - STCMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><i class="fas fa-vial"></i><h5>STCMS <span>Test Management</span></h5></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Main</div><a href="dashboard.html" class="nav-link-sidebar"><i class="fas fa-th-large"></i> Dashboard</a><a href="projects.html" class="nav-link-sidebar"><i class="fas fa-folder-open"></i> Projects</a></div>
+                <div class="nav-section"><div class="nav-section-title">Testing</div><a href="test-cases.html" class="nav-link-sidebar"><i class="fas fa-list-check"></i> Test Cases</a><a href="test-execution.html" class="nav-link-sidebar"><i class="fas fa-play-circle"></i> Test Execution</a><a href="test-suites.html" class="nav-link-sidebar"><i class="fas fa-layer-group"></i> Test Suites</a><a href="bugs.html" class="nav-link-sidebar"><i class="fas fa-bug"></i> Bug Tracking</a></div>
+                <div class="nav-section"><div class="nav-section-title">Analytics</div><a href="reports.html" class="nav-link-sidebar"><i class="fas fa-chart-bar"></i> Reports</a><a href="rtm.html" class="nav-link-sidebar"><i class="fas fa-project-diagram"></i> RTM</a></div>
+                <div class="nav-section"><div class="nav-section-title">Admin</div><a href="team.html" class="nav-link-sidebar"><i class="fas fa-users"></i> Team</a><a href="settings.html" class="nav-link-sidebar"><i class="fas fa-cog"></i> Settings</a><a href="help.html" class="nav-link-sidebar active"><i class="fas fa-question-circle"></i> Help</a></div>
+            </nav>
+            <div class="sidebar-footer"><a href="#" class="nav-link-sidebar" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+        </div>
+        <div class="overlay" id="sidebarOverlay"></div>
+        <div class="main-content">
+            <header class="top-header">
+                <div class="header-left"><button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button><h1 class="page-title">Help & About</h1></div>
+                <div class="header-right">
+                    <button class="header-btn theme-toggle" onclick="toggleTheme()" title="Toggle Theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+                    <div style="position:relative;"><button class="header-btn" id="notificationBtn" onclick="toggleNotifications()"><i class="fas fa-bell"></i><span class="notification-count" id="notificationCount" style="display:none;">0</span></button><div class="notification-dropdown" id="notificationDropdown"><div class="notification-header"><h6>Notifications</h6><button class="btn btn-sm btn-link" onclick="markAllNotificationsRead()">Mark all read</button></div><div class="notification-list" id="notificationList"></div></div></div>
+                    <div class="user-dropdown"><div class="user-avatar" id="headerUserAvatar">AU</div><div class="user-info"><span class="user-name" id="headerUserName">Admin</span><span class="user-role" id="headerUserRole">Admin</span></div></div>
+                </div>
+            </header>
+            <div class="page-content">
+                <div class="page-header"><div><h2>Help & About</h2><p>User guide, FAQ, and application information</p></div></div>
+
+                <!-- About -->
+                <div class="help-card">
+                    <h5><i class="fas fa-info-circle" style="color:var(--primary);margin-right:8px;"></i>About STCMS</h5>
+                    <p>The <strong>Software Test Case Management System (STCMS)</strong> is a web-based application designed for QA teams to manage their testing workflow. It provides a comprehensive suite of tools for creating and managing projects, test cases, test suites, bug tracking, and generating testing reports.</p>
+                    <p style="margin-top:8px;">This application was developed as an academic project for <strong>Software Engineering and Quality Assurance (SEQA)</strong>. It uses HTML5, CSS3, JavaScript (ES6+), Bootstrap 5, Chart.js, and LocalStorage for data persistence.</p>
+                </div>
+
+                <!-- Quick Start -->
+                <div class="help-card">
+                    <h5><i class="fas fa-rocket" style="color:var(--success);margin-right:8px;"></i>Quick Start Guide</h5>
+                    <div class="steps-list">
+                        <ol style="padding-left:20px;line-height:2.2;">
+                            <li><strong>Login</strong> with demo credentials (admin/admin123, tester/tester123, developer/developer123)</li>
+                            <li><strong>Create a Project</strong> – Go to Projects and add a new software project</li>
+                            <li><strong>Create Test Cases</strong> – Navigate to Test Cases and add test cases for your project</li>
+                            <li><strong>Create Test Suites</strong> – Group related test cases into suites</li>
+                            <li><strong>Execute Tests</strong> – Go to Test Execution, select a test case, and record results</li>
+                            <li><strong>Report Bugs</strong> – When a test fails, report bugs directly from the execution page</li>
+                            <li><strong>Track Progress</strong> – Use the Dashboard and Reports to monitor testing progress</li>
+                            <li><strong>Manage RTM</strong> – Map requirements to test cases in the RTM section</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- Modules -->
+                <div class="help-card">
+                    <h5><i class="fas fa-th-large" style="color:var(--primary);margin-right:8px;"></i>Modules Overview</h5>
+                    <div class="table-responsive">
+                        <table class="table" style="font-size:13px;">
+                            <thead><tr><th>Module</th><th>Description</th><th>Access</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Dashboard</strong></td><td>Overview of testing metrics, charts, quality metrics, and recent activity</td><td>All roles</td></tr>
+                                <tr><td><strong>Projects</strong></td><td>Create and manage software projects with status tracking</td><td>Admin, PM, Tester</td></tr>
+                                <tr><td><strong>Test Cases</strong></td><td>Create, edit, duplicate, search, filter, and manage test cases</td><td>Admin, Tester</td></tr>
+                                <tr><td><strong>Test Execution</strong></td><td>Execute test cases, record results, and report bugs on failure</td><td>Admin, Tester</td></tr>
+                                <tr><td><strong>Test Suites</strong></td><td>Group test cases into suites for organized testing</td><td>Admin, Tester</td></tr>
+                                <tr><td><strong>Bug Tracking</strong></td><td>Report, track, assign, and manage software bugs</td><td>Admin, Tester, Dev</td></tr>
+                                <tr><td><strong>Reports</strong></td><td>Generate 9 types of reports with charts and CSV export</td><td>All roles</td></tr>
+                                <tr><td><strong>RTM</strong></td><td>Requirement Traceability Matrix mapping requirements to tests</td><td>Admin, Tester, PM</td></tr>
+                                <tr><td><strong>Team</strong></td><td>Manage team members, roles, and assignments</td><td>Admin only</td></tr>
+                                <tr><td><strong>Settings</strong></td><td>Theme toggle, data export/import, activity log, reset</td><td>All roles</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Demo Credentials -->
+                <div class="help-card">
+                    <h5><i class="fas fa-key" style="color:var(--warning);margin-right:8px;"></i>Demo Credentials</h5>
+                    <div class="table-responsive">
+                        <table class="table" style="font-size:13px;">
+                            <thead><tr><th>Role</th><th>Username</th><th>Password</th><th>Access Level</th></tr></thead>
+                            <tbody>
+                                <tr><td><strong>Admin</strong></td><td>admin</td><td>admin123</td><td>Full access to all modules</td></tr>
+                                <tr><td><strong>Tester</strong></td><td>tester</td><td>tester123</td><td>Test cases, execution, bug reporting, reports</td></tr>
+                                <tr><td><strong>Developer</strong></td><td>developer</td><td>developer123</td><td>Bug tracking, view test results, reports</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- FAQ -->
+                <div class="help-card">
+                    <h5><i class="fas fa-question-circle" style="color:var(--info);margin-right:8px;"></i>Frequently Asked Questions</h5>
+                    <div class="faq-item active" onclick="this.classList.toggle('active')">
+                        <div class="faq-question">Where is the data stored? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">All data is stored in your browser's LocalStorage. Data persists across browser refreshes but is specific to the browser and device you're using. It is not synced across devices.</div>
+                    </div>
+                    <div class="faq-item" onclick="this.classList.toggle('active')">
+                        <div class="faq-question">How do I backup my data? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Go to Settings and click "Export All Data (JSON)". This downloads a complete backup file. You can restore it later using the "Import Data" option.</div>
+                    </div>
+                    <div class="faq-item" onclick="this.classList.toggle('active')">
+                        <div class="faq-question">Can I report a bug from a failed test? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Yes! When you execute a test case and mark it as "Failed", a "Report Bug" button appears. Clicking it will pre-fill the bug report form with details from the test case.</div>
+                    </div>
+                    <div class="faq-item" onclick="this.classList.toggle('active')">
+                        <div class="faq-question">How do I export reports? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Each report page has CSV export buttons. You can also export all data as JSON from the Settings page. The Reports page also has a Print button for physical copies.</div>
+                    </div>
+                    <div class="faq-item" onclick="this.classList.toggle('active')">
+                        <div class="faq-question">Is this application secure for production use? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">No. This application uses client-side LocalStorage for authentication, which is NOT secure for production. It is designed for academic demonstration purposes only. Real applications should use server-side authentication, encrypted passwords, and proper session management.</div>
+                    </div>
+                    <div class="faq-item" onclick="this.classList.toggle('active')">
+                        <div class="faq-question">What is the RTM module? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">RTM stands for Requirement Traceability Matrix. It maps software requirements to their corresponding test cases, helping ensure complete test coverage. You can add requirements, link test cases, and track which requirements are covered, partially covered, or not tested.</div>
+                    </div>
+                    <div class="faq-item" onclick="this.classList.toggle('active')">
+                        <div class="faq-question">How are quality metrics calculated? <i class="fas fa-chevron-down"></i></div>
+                        <div class="faq-answer">Quality metrics are calculated dynamically from data: Pass Rate = Passed / Executed × 100, Test Coverage = Executed / Total × 100, Defect Density = Total Bugs / Total Test Cases. All formulas update automatically as data changes.</div>
+                    </div>
+                </div>
+
+                <!-- Technology Stack -->
+                <div class="help-card">
+                    <h5><i class="fas fa-code" style="color:var(--purple);margin-right:8px;"></i>Technology Stack</h5>
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-4"><div class="metric-item"><span class="metric-value" style="font-size:20px;color:var(--danger);"><i class="fab fa-html5"></i></span><span class="metric-label">HTML5</span></div></div>
+                        <div class="col-md-4"><div class="metric-item"><span class="metric-value" style="font-size:20px;color:var(--primary);"><i class="fab fa-css3-alt"></i></span><span class="metric-label">CSS3</span></div></div>
+                        <div class="col-md-4"><div class="metric-item"><span class="metric-value" style="font-size:20px;color:var(--warning);"><i class="fab fa-js"></i></span><span class="metric-label">JavaScript ES6+</span></div></div>
+                        <div class="col-md-4"><div class="metric-item"><span class="metric-value" style="font-size:20px;color:var(--purple);"><i class="fab fa-bootstrap"></i></span><span class="metric-label">Bootstrap 5</span></div></div>
+                        <div class="col-md-4"><div class="metric-item"><span class="metric-value" style="font-size:20px;color:var(--success);"><i class="fas fa-chart-pie"></i></span><span class="metric-label">Chart.js</span></div></div>
+                        <div class="col-md-4"><div class="metric-item"><span class="metric-value" style="font-size:20px;color:var(--info);"><i class="fas fa-database"></i></span><span class="metric-label">LocalStorage</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

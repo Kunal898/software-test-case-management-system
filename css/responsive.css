@@ -1,0 +1,212 @@
+/* =============================================
+   Responsive Design Styles
+   ============================================= */
+
+/* Tablet and smaller desktops */
+@media (max-width: 1200px) {
+    .dashboard-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .main-content {
+        margin-left: 0;
+    }
+
+    .sidebar-toggle {
+        display: flex;
+    }
+
+    .overlay.show {
+        display: block;
+    }
+
+    .dashboard-charts {
+        grid-template-columns: 1fr;
+    }
+
+    .progress-overview {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-cards {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .modal-xl {
+        max-width: 90%;
+    }
+}
+
+/* Mobile phones */
+@media (max-width: 768px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .stat-card {
+        padding: 16px;
+    }
+
+    .stat-card .stat-info h3 {
+        font-size: 22px;
+    }
+
+    .stat-card .stat-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .page-content {
+        padding: 16px;
+    }
+
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .page-header .btn {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .table-toolbar {
+        flex-direction: column;
+    }
+
+    .table-toolbar .search-box {
+        min-width: 100%;
+    }
+
+    .table-filters {
+        width: 100%;
+    }
+
+    .table-filters .form-select {
+        min-width: 0;
+        flex: 1;
+    }
+
+    .table-responsive {
+        font-size: 12px;
+    }
+
+    .quick-actions {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+
+    .quick-action-btn {
+        padding: 12px;
+    }
+
+    .quick-action-btn i {
+        font-size: 20px;
+    }
+
+    .welcome-banner {
+        padding: 20px;
+    }
+
+    .welcome-banner h3 {
+        font-size: 18px;
+    }
+
+    .notification-dropdown {
+        width: calc(100vw - 32px);
+        right: -60px;
+    }
+
+    .header-right .user-info {
+        display: none;
+    }
+
+    .project-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .confirm-dialog {
+        padding: 24px;
+    }
+
+    .custom-toast {
+        min-width: 280px;
+    }
+
+    .status-flow {
+        font-size: 11px;
+    }
+
+    .setting-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .modal-lg, .modal-xl {
+        max-width: 95%;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .dashboard-stats {
+        grid-template-columns: 1fr;
+    }
+
+    .top-header {
+        padding: 0 12px;
+    }
+
+    .header-left .page-title {
+        font-size: 15px;
+    }
+
+    .login-card {
+        padding: 32px 24px;
+        margin: 16px;
+    }
+
+    .modal-body {
+        padding: 16px;
+    }
+
+    .table-pagination {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+    }
+
+    .metrics-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+}

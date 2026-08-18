@@ -168,8 +168,7 @@
 - [📈 Requirement Traceability Matrix (RTM)](#-requirement-traceability-matrix-rtm)
 - [💾 LocalStorage Relational Architecture](#-localstorage-relational-architecture)
 - [🧪 20 Comprehensive Self-Test Cases](#-20-comprehensive-self-test-cases)
-- [🎓 SEQA Viva Demonstration Script](#-seqa-viva-demonstration-script)
-- [💡 20 High-Frequency Viva Q&A](#-20-high-frequency-viva-qa)
+- [🎓 SEQA Demonstration Script](#-seqa-demonstration-script)
 - [🔮 Future Roadmap](#-future-roadmap)
 
 ---
@@ -425,7 +424,7 @@ stcms_notifications───► [ { id: "NTF...", message: "...", read: false } 
 
 ---
 
-## 🎓 SEQA Viva Demonstration Script
+## 🎓 SEQA Demonstration Script
 
 ```
 1. INTRODUCTION (30s)
@@ -456,130 +455,6 @@ stcms_notifications───► [ { id: "NTF...", message: "...", read: false } 
    "Finally, the Reports module generates 9 dynamic report types with CSV/JSON export,
    complemented by an audit activity log and dark mode support."
 ```
-
----
-
-## 💡 20 High-Frequency Viva Q&A
-
-<details>
-<summary><b>Q1: What is the Software Testing Life Cycle (STLC) and how is it implemented?</b></summary>
-<br>
-<b>Answer:</b> STLC is the systematic sequence of testing activities. This system implements every phase: <i>Requirement Analysis</i> (RTM Module), <i>Test Planning</i> (Projects & Suites), <i>Test Case Development</i> (Test Cases Module), <i>Test Execution</i> (Execution Runner), <i>Defect Tracking</i> (Bug Tracking Module), and <i>Test Closure</i> (Reports & Dashboard Analytics).
-</details>
-
-<details>
-<summary><b>Q2: What is the Requirement Traceability Matrix (RTM) and why is it important?</b></summary>
-<br>
-<b>Answer:</b> RTM is a grid mapping business requirements to corresponding test cases and defects. It ensures 100% test coverage, identifies untested requirements, and prevents requirement gaps before deployment.
-</details>
-
-<details>
-<summary><b>Q3: How is Defect Density calculated in this application?</b></summary>
-<br>
-<b>Answer:</b> $\text{Defect Density} = \frac{\text{Total Confirmed Defects}}{\text{Total Test Cases}}$. It provides a quantitative measure of software reliability and risk across modules.
-</details>
-
-<details>
-<summary><b>Q4: What is the difference between Priority and Severity?</b></summary>
-<br>
-<b>Answer:</b> <b>Severity</b> is the technical impact of a defect on system functionality (Critical, Major, Minor, Trivial). <b>Priority</b> defines the business urgency with which the defect must be fixed (High, Medium, Low).
-</details>
-
-<details>
-<summary><b>Q5: How does this application prevent Cross-Site Scripting (XSS)?</b></summary>
-<br>
-<b>Answer:</b> All user input is sanitized before DOM injection using our <code>escapeHTML()</code> utility function, which converts HTML characters (<code>&lt;</code>, <code>&gt;</code>, <code>&amp;</code>, <code>&quot;</code>) into safe entity representations.
-</details>
-
-<details>
-<summary><b>Q6: What is the difference between Smoke, Sanity, and Regression testing?</b></summary>
-<br>
-<b>Answer:</b> <i>Smoke Testing</i> verifies basic build stability; <i>Sanity Testing</i> quickly validates specific bug fixes; <i>Regression Testing</i> re-runs existing test suites to ensure new changes haven't broken existing features.
-</details>
-
-<details>
-<summary><b>Q7: How does LocalStorage handle data relationships without a backend database?</b></summary>
-<br>
-<b>Answer:</b> Data entities are stored in JSON format under isolated namespaces (<code>stcms_projects</code>, <code>stcms_testCases</code>, etc.). Relational integrity is maintained by referencing unique primary keys (e.g. <code>PRJ001</code>, <code>TC001</code>, <code>BUG001</code>).
-</details>
-
-<details>
-<summary><b>Q8: What is Test Coverage and how is it calculated here?</b></summary>
-<br>
-<b>Answer:</b> $\text{Test Coverage} = \frac{\text{Executed Test Cases}}{\text{Total Test Cases}} \times 100$. It measures the proportion of planned tests that have been completed.
-</details>
-
-<details>
-<summary><b>Q9: How does the client-side CSV export function work?</b></summary>
-<br>
-<b>Answer:</b> JavaScript compiles data arrays into comma-separated text strings, constructs a <code>Blob</code> with MIME type <code>text/csv</code>, and triggers a download using a dynamically created <code>&lt;a&gt;</code> element with an object URL.
-</details>
-
-<details>
-<summary><b>Q10: What is a Blocked test case?</b></summary>
-<br>
-<b>Answer:</b> A test case is marked as <b>Blocked</b> when an external blocker (such as an offline third-party API or an unfulfilled precondition) prevents the tester from executing the test steps.
-</details>
-
-<details>
-<summary><b>Q11: What is the difference between Verification and Validation?</b></summary>
-<br>
-<b>Answer:</b> <b>Verification</b> asks "Are we building the product right?" (reviews, walkthroughs, static checks). <b>Validation</b> asks "Are we building the right product?" (dynamic test execution against requirements).
-</details>
-
-<details>
-<summary><b>Q12: What is Boundary Value Analysis (BVA)?</b></summary>
-<br>
-<b>Answer:</b> A black-box test design technique focused on testing values at the boundaries of equivalence partitions (minimum, just above minimum, nominal, just below maximum, maximum).
-</details>
-
-<details>
-<summary><b>Q13: How are unauthenticated users prevented from accessing dashboard pages?</b></summary>
-<br>
-<b>Answer:</b> Each page runs a route guard in <code>auth.js</code> during <code>DOMContentLoaded</code>. If <code>stcms_currentUser</code> is absent, the user is redirected to <code>index.html</code>.
-</details>
-
-<details>
-<summary><b>Q14: What is the defect lifecycle supported by STCMS?</b></summary>
-<br>
-<b>Answer:</b> <code>Open</code> $\rightarrow$ <code>Assigned</code> $\rightarrow$ <code>In Progress</code> $\rightarrow$ <code>Fixed</code> $\rightarrow$ <code>Retest</code> $\rightarrow$ <code>Closed</code>, with branches for <code>Reopened</code> and <code>Rejected</code>.
-</details>
-
-<details>
-<summary><b>Q15: How does the system handle audit logging?</b></summary>
-<br>
-<b>Answer:</b> Every CRUD operation, execution, and status update calls <code>addActivity()</code>, which records the user, action, module, timestamp, and details into the <code>stcms_activityLog</code> array.
-</details>
-
-<details>
-<summary><b>Q16: What is Equivalence Class Partitioning (ECP)?</b></summary>
-<br>
-<b>Answer:</b> A test technique that divides input data into valid and invalid partitions, assuming all values within a partition will be processed similarly by the system.
-</details>
-
-<details>
-<summary><b>Q17: What are Non-Functional Requirements (NFR) in this project?</b></summary>
-<br>
-<b>Answer:</b> Client-side sub-second response times, responsive UI layout, persistent theme state, form validation, and complete data portability via JSON backup.
-</details>
-
-<details>
-<summary><b>Q18: What is Positive vs. Negative Testing?</b></summary>
-<br>
-<b>Answer:</b> Positive testing verifies expected behavior with valid inputs; Negative testing verifies that the application handles invalid inputs and edge cases gracefully without crashing.
-</details>
-
-<details>
-<summary><b>Q19: What is the storage limit of LocalStorage and how is it monitored?</b></summary>
-<br>
-<b>Answer:</b> LocalStorage typically provides ~5MB per domain origin. The Settings page calculates and displays real-time storage usage in kilobytes.
-</details>
-
-<details>
-<summary><b>Q20: Why is LocalStorage authentication suitable for demos but not production?</b></summary>
-<br>
-<b>Answer:</b> LocalStorage lacks HTTP-only protections and is accessible to client-side scripts. Production applications require server-side session management with encrypted passwords and HTTP-only cookie tokens.
-</details>
 
 ---
 

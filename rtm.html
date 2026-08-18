@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="STCMS RTM - Requirement Traceability Matrix">
+    <title>RTM - STCMS</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <div class="app-wrapper">
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-brand"><i class="fas fa-vial"></i><h5>STCMS <span>Test Management</span></h5></div>
+            <nav class="sidebar-nav">
+                <div class="nav-section"><div class="nav-section-title">Main</div><a href="dashboard.html" class="nav-link-sidebar"><i class="fas fa-th-large"></i> Dashboard</a><a href="projects.html" class="nav-link-sidebar"><i class="fas fa-folder-open"></i> Projects</a></div>
+                <div class="nav-section"><div class="nav-section-title">Testing</div><a href="test-cases.html" class="nav-link-sidebar"><i class="fas fa-list-check"></i> Test Cases</a><a href="test-execution.html" class="nav-link-sidebar"><i class="fas fa-play-circle"></i> Test Execution</a><a href="test-suites.html" class="nav-link-sidebar"><i class="fas fa-layer-group"></i> Test Suites</a><a href="bugs.html" class="nav-link-sidebar"><i class="fas fa-bug"></i> Bug Tracking</a></div>
+                <div class="nav-section"><div class="nav-section-title">Analytics</div><a href="reports.html" class="nav-link-sidebar"><i class="fas fa-chart-bar"></i> Reports</a><a href="rtm.html" class="nav-link-sidebar active"><i class="fas fa-project-diagram"></i> RTM</a></div>
+                <div class="nav-section"><div class="nav-section-title">Admin</div><a href="team.html" class="nav-link-sidebar"><i class="fas fa-users"></i> Team</a><a href="settings.html" class="nav-link-sidebar"><i class="fas fa-cog"></i> Settings</a><a href="help.html" class="nav-link-sidebar"><i class="fas fa-question-circle"></i> Help</a></div>
+            </nav>
+            <div class="sidebar-footer"><a href="#" class="nav-link-sidebar" onclick="logoutUser(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a></div>
+        </div>
+        <div class="overlay" id="sidebarOverlay"></div>
+        <div class="main-content">
+            <header class="top-header">
+                <div class="header-left"><button class="sidebar-toggle" id="sidebarToggle"><i class="fas fa-bars"></i></button><h1 class="page-title">Requirement Traceability Matrix</h1></div>
+                <div class="header-right">
+                    <button class="header-btn theme-toggle" onclick="toggleTheme()" title="Toggle Theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+                    <div style="position:relative;"><button class="header-btn" id="notificationBtn" onclick="toggleNotifications()"><i class="fas fa-bell"></i><span class="notification-count" id="notificationCount" style="display:none;">0</span></button><div class="notification-dropdown" id="notificationDropdown"><div class="notification-header"><h6>Notifications</h6><button class="btn btn-sm btn-link" onclick="markAllNotificationsRead()">Mark all read</button></div><div class="notification-list" id="notificationList"></div></div></div>
+                    <div class="user-dropdown"><div class="user-avatar" id="headerUserAvatar">AU</div><div class="user-info"><span class="user-name" id="headerUserName">Admin</span><span class="user-role" id="headerUserRole">Admin</span></div></div>
+                </div>
+            </header>
+            <div class="page-content">
+                <div class="page-header">
+                    <div><h2>Requirement Traceability Matrix</h2><p>Map requirements to test cases and track coverage</p></div>
+                    <div class="d-flex gap-2">
+                        <button class="btn btn-outline-primary" onclick="exportRTMCSV()"><i class="fas fa-download"></i> Export CSV</button>
+                        <button class="btn btn-primary" onclick="openReqModal()"><i class="fas fa-plus"></i> Add Requirement</button>
+                    </div>
+                </div>
+
+                <!-- Coverage Summary -->
+                <div class="dashboard-stats mb-4" id="rtmStats"></div>
+
+                <!-- RTM Table -->
+                <div class="table-container">
+                    <div class="table-responsive">
+                        <table class="table rtm-table">
+                            <thead><tr><th>Req ID</th><th>Requirement</th><th>Test Case(s)</th><th>Test Status</th><th>Bug ID</th><th>Req Status</th><th>Actions</th></tr></thead>
+                            <tbody id="rtmTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="reqModal" tabindex="-1"><div class="modal-dialog"><div class="modal-content">
+        <div class="modal-header"><h5 class="modal-title" id="reqModalTitle">Add Requirement</h5><button type="button" class="btn-close" data-bs-dismiss="modal"></button></div>
+        <div class="modal-body">
+            <form id="reqForm">
+                <input type="hidden" id="reqId">
+                <div class="mb-3"><label for="reqDescription" class="form-label">Requirement Description *</label><input type="text" class="form-control" id="reqDescription" required minlength="5"><div class="invalid-feedback"></div></div>
+                <div class="mb-3">
+                    <label class="form-label">Linked Test Cases</label>
+                    <div id="reqTestCasesList" style="max-height:200px;overflow-y:auto;border:1px solid var(--border);border-radius:var(--border-radius);padding:12px;"></div>
+                </div>
+                <div class="mb-3"><label for="reqStatus" class="form-label">Status</label><select class="form-select" id="reqStatus"><option value="Not Tested">Not Tested</option><option value="Covered">Covered</option><option value="Partially Covered">Partially Covered</option><option value="Blocked">Blocked</option></select></div>
+            </form>
+        </div>
+        <div class="modal-footer"><button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button><button type="button" class="btn btn-primary" onclick="saveRequirement()"><i class="fas fa-save"></i> Save</button></div>
+    </div></div></div>
+
+    <div class="toast-container" id="toastContainer"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/rtm.js"></script>
+</body>
+</html>
