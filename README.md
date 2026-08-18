@@ -1,162 +1,26 @@
 <div align="center">
 
-<!-- ANIMATED HEADER SVG BANNER -->
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 240" width="100%" height="240">
-  <defs>
-    <!-- Background Gradient -->
-    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0F172A" />
-      <stop offset="50%" stop-color="#1E293B" />
-      <stop offset="100%" stop-color="#0F172A" />
-    </linearGradient>
+<img src="assets/github-banner.svg" alt="Software Test Case Management System Banner" width="100%">
 
-    <!-- Glowing Accent Gradient -->
-    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#2563EB" />
-      <stop offset="50%" stop-color="#7C3AED" />
-      <stop offset="100%" stop-color="#38BDF8" />
-    </linearGradient>
+<br>
 
-    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3B82F6" stop-opacity="0.2" />
-      <stop offset="100%" stop-color="#1D4ED8" stop-opacity="0.05" />
-    </linearGradient>
-
-    <!-- Animated Glow Filter -->
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="8" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
-
-    <!-- Floating Keyframes -->
-    <style>
-      @keyframes pulseGlow {
-        0%, 100% { opacity: 0.4; transform: scale(1); }
-        50% { opacity: 0.8; transform: scale(1.05); }
-      }
-      @keyframes floatParticle {
-        0%, 100% { transform: translateY(0px) translateX(0px); }
-        50% { transform: translateY(-12px) translateX(8px); }
-      }
-      @keyframes typingCursor {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0; }
-      }
-      @keyframes scanline {
-        0% { transform: translateY(-100px); }
-        100% { transform: translateY(300px); }
-      }
-      .bg-rect { fill: url(#bgGrad); rx: 16px; }
-      .glowing-orbit { animation: pulseGlow 6s ease-in-out infinite; transform-origin: center; }
-      .particle-1 { animation: floatParticle 5s ease-in-out infinite; }
-      .particle-2 { animation: floatParticle 7s ease-in-out infinite 1s; }
-      .particle-3 { animation: floatParticle 6s ease-in-out infinite 2s; }
-      .cursor { animation: typingCursor 1s infinite; }
-      .title-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 800; fill: #FFFFFF; font-size: 32px; letter-spacing: -0.5px; }
-      .subtitle-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 500; fill: #94A3B8; font-size: 15px; }
-      .badge-text { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 600; fill: #38BDF8; font-size: 11px; letter-spacing: 1.5px; }
-      .metric-label { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 500; fill: #94A3B8; font-size: 11px; }
-      .metric-val { font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 700; fill: #F8FAFC; font-size: 16px; }
-    </style>
-  </defs>
-
-  <!-- Background Base -->
-  <rect width="900" height="240" class="bg-rect" stroke="#334155" stroke-width="1.5" />
-
-  <!-- Background Ambient Glow Orbs -->
-  <circle cx="150" cy="60" r="90" fill="#2563EB" opacity="0.15" filter="url(#glow)" class="glowing-orbit" />
-  <circle cx="780" cy="180" r="110" fill="#7C3AED" opacity="0.15" filter="url(#glow)" class="glowing-orbit" />
-
-  <!-- Grid Pattern Overlay -->
-  <g opacity="0.07" stroke="#FFFFFF" stroke-width="0.8">
-    <line x1="0" y1="40" x2="900" y2="40" />
-    <line x1="0" y1="80" x2="900" y2="80" />
-    <line x1="0" y1="120" x2="900" y2="120" />
-    <line x1="0" y1="160" x2="900" y2="160" />
-    <line x1="0" y1="200" x2="900" y2="200" />
-    <line x1="150" y1="0" x2="150" y2="240" />
-    <line x1="300" y1="0" x2="300" y2="240" />
-    <line x1="450" y1="0" x2="450" y2="240" />
-    <line x1="600" y1="0" x2="600" y2="240" />
-    <line x1="750" y1="0" x2="750" y2="240" />
-  </g>
-
-  <!-- Floating Particles -->
-  <circle cx="220" cy="45" r="3" fill="#38BDF8" opacity="0.6" class="particle-1" />
-  <circle cx="720" cy="65" r="4" fill="#818CF8" opacity="0.7" class="particle-2" />
-  <circle cx="820" cy="130" r="2.5" fill="#34D399" opacity="0.5" class="particle-3" />
-  <circle cx="100" cy="190" r="3.5" fill="#F472B6" opacity="0.6" class="particle-1" />
-
-  <!-- Logo Icon Container -->
-  <g transform="translate(48, 55)">
-    <rect width="64" height="64" rx="16" fill="url(#glowGrad)" />
-    <!-- Flask / Beaker Icon -->
-    <path d="M26 18 L38 18 M32 18 L32 28 L44 44 C46 47 44 50 40 50 L24 50 C20 50 18 47 20 44 L32 28" 
-          stroke="#FFFFFF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-    <circle cx="28" cy="42" r="2" fill="#FFFFFF" />
-    <circle cx="35" cy="38" r="1.5" fill="#FFFFFF" />
-    <circle cx="36" cy="44" r="2" fill="#FFFFFF" />
-  </g>
-
-  <!-- Header Category Badge -->
-  <g transform="translate(130, 48)">
-    <rect width="180" height="22" rx="11" fill="url(#badgeGrad)" stroke="#38BDF8" stroke-width="1" stroke-opacity="0.4"/>
-    <text x="12" y="15" class="badge-text">⚡ SEQA ACADEMIC SUITE</text>
-  </g>
-
-  <!-- Main Title -->
-  <text x="130" y="105" class="title-text">Software Test Case Management System</text>
-
-  <!-- Subtitle -->
-  <text x="130" y="132" class="subtitle-text">Enterprise-Grade QA Testing, STLC Lifecycle, Defect Tracking &amp; RTM Matrix</text>
-
-  <!-- Metrics / Badges Ribbon -->
-  <g transform="translate(130, 155)">
-    <!-- Metric 1: STLC Lifecycle -->
-    <rect x="0" y="0" width="165" height="52" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1" />
-    <text x="14" y="22" class="metric-label">STLC COMPLIANCE</text>
-    <text x="14" y="42" class="metric-val">100% Complete</text>
-    <circle cx="145" cy="26" r="5" fill="#10B981" />
-
-    <!-- Metric 2: LocalStorage Engine -->
-    <rect x="180" y="0" width="165" height="52" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1" />
-    <text x="194" y="22" class="metric-label">DATA PERSISTENCE</text>
-    <text x="194" y="42" class="metric-val">LocalStorage DB</text>
-    <circle cx="325" cy="26" r="5" fill="#3B82F6" />
-
-    <!-- Metric 3: Architecture -->
-    <rect x="360" y="0" width="165" height="52" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1" />
-    <text x="374" y="22" class="metric-label">SERVER REQUIREMENT</text>
-    <text x="374" y="42" class="metric-val">Zero Backend</text>
-    <circle cx="505" cy="26" r="5" fill="#8B5CF6" />
-
-    <!-- Metric 4: Dark Mode -->
-    <rect x="540" y="0" width="165" height="52" rx="10" fill="#1E293B" stroke="#334155" stroke-width="1" />
-    <text x="554" y="22" class="metric-label">THEME SYSTEM</text>
-    <text x="554" y="42" class="metric-val">Dual Light/Dark</text>
-    <circle cx="685" cy="26" r="5" fill="#F59E0B" />
-  </g>
-</svg>
-
-<br/>
-
-<!-- SHIELDS BADGES -->
-<p align="center">
-  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
-  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
-  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript ES6" />
-  <img src="https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap 5" />
-  <img src="https://img.shields.io/badge/Chart.js_4-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js" />
-  <img src="https://img.shields.io/badge/Storage-LocalStorage-10B981?style=for-the-badge&logo=databricks&logoColor=white" alt="LocalStorage" />
-  <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="MIT License" />
+<p>
+  <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5">
+  <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/Bootstrap_5-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white" alt="Bootstrap">
+  <img src="https://img.shields.io/badge/Chart.js-FF6384?style=for-the-badge&logo=chartdotjs&logoColor=white" alt="Chart.js">
+  <img src="https://img.shields.io/badge/Storage-LocalStorage-10B981?style=for-the-badge" alt="LocalStorage">
 </p>
 
-<h3>🎯 Modern Web-Based Quality Assurance &amp; Software Testing Suite</h3>
-<p><i>Engineered for Software Engineering and Quality Assurance (SEQA) Academic Projects &amp; Lab Examinations</i></p>
+<h3>🎯 Modern Web-Based Quality Assurance & Software Testing Suite</h3>
+
+<p>
+<i>Software Engineering & Quality Assurance Academic Project</i>
+</p>
 
 </div>
 
----
 
 ## 📑 Table of Contents
 
